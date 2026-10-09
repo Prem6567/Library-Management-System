@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+class Book {
+    private int id;
+    private String title;
+    private String author;
+    private boolean issued;
+
+    Book(int id, String title, String author) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.issued = false;
+    }
+
+    void displayDetails() {
+        System.out.println("Book ID: " + id);
+        System.out.println("Book Title: " + title);
+        System.out.println("Author: " + author);
+        System.out.println("Status: " + (issued ? "Issued" : "Available"));
+    }
+
+    void issueBook() {
+        if (issued) {
+            System.out.println("Book is already issued.");
+        } else {
+            issued = true;
+            System.out.println("Book issued successfully.");
+        }
+    }
+
+    void returnBook() {
+        if (issued) {
+            issued = false;
+            System.out.println("Book returned successfully.");
+        } else {
+            System.out.println("Book is already available.");
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        Book book = new Book(101, "Java Programming", "James Gosling");
+
+        int choice;
+
+        do {
+            System.out.println();
+            System.out.println("===== LIBRARY MANAGEMENT SYSTEM =====");
+            System.out.println("1. Display Book Details");
+            System.out.println("2. Issue Book");
+            System.out.println("3. Return Book");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = sc.nextInt();
+
+            if (choice == 1) {
+                book.displayDetails();
+            } else if (choice == 2) {
+                book.issueBook();
+            } else if (choice == 3) {
+                book.returnBook();
+            } else if (choice == 4) {
+                System.out.println("Thank you for using Library Management System.");
+            } else {
+                System.out.println("Invalid choice.");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
